@@ -9,5 +9,7 @@ def base_stacking(dna):
     return energy
 
 dna = "CTCGGATTTGTAAAGATCATGATCTCATACATAGTACCTAGCCA"
+total_energy = base_stacking(dna)
 stacking_energy = base_stacking(dna)/(len(dna) - 1)
+print("Total energy for the given DNA sequence:", total_energy)
 print("The average base stacking energy for the given dna sequence is:", stacking_energy)

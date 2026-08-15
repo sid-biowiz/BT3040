@@ -16,5 +16,5 @@ def complementary_dna(dna):
 
 
 dna = "CTCGGATTTGTAAAGATCATGATCTCATACATAGTACCTAGCCA"
-ans = complementary_dna(dna)
+ans = complementary_dna(dna[::-1])
 print(ans)
