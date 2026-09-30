@@ -1,27 +1,16 @@
 import matplotlib.pyplot as plt
+from Bio import SeqIO
+
+filepath = r'D:\BT3040\Assignment8\Q1.fasta'   
 
 H = {'A': 13.85, 'D': 11.61, 'C': 15.37, 'E': 11.38, 'F': 13.93, 'G': 13.34, 'H': 13.82,
      'I': 15.28, 'K': 11.58, 'L': 14.13, 'M': 13.86, 'N': 13.02, 'P': 12.35, 'Q': 12.61,
      'R': 13.10, 'S': 13.39, 'T': 12.70, 'V': 14.56, 'W': 15.48, 'Y': 13.88}
 
 #basically after serializing Ie just look for this combination while running a window through the loop
-HELIX = ["1100", "0011"]    
+HELIX = ["1100", "0011"]
 STRAND = ["1010", "0101"]   #taken 4 because in q2 its 8/6
 
-
-def read_fasta(filename):
-    headers = []
-    seqs = []
-    for line in open(filename):
-        line = line.strip()
-        if line == "":
-            continue
-        if line.startswith(">"):
-            headers.append(line[1:])
-            seqs.append("")
-        else:
-            seqs[-1] += line
-    return headers, seqs
 
 #returning alpha/beta positions
 def find_stretches(binary, patterns):
@@ -45,11 +34,11 @@ def to_ranges(positions):
     return [str(a + 1) + "-" + str(b + 1) for a, b in ranges]   #1based indexing
 
 
-headers, seqs = read_fasta("Q1.fasta")
-fig, ax = plt.subplots(len(seqs), 1, figsize=(10, 3.5 * len(seqs)), squeeze=False)
+records = list(SeqIO.parse(filepath, "fasta"))
+fig, ax = plt.subplots(len(records), 1, figsize=(10, 3.5 * len(records)), squeeze=False)
 
-for k in range(len(seqs)):
-    seq = seqs[k]
+for k in range(len(records)):
+    seq = str(records[k].seq)
     profile = [H[c] for c in seq]
     avg = sum(profile) / len(profile)
     binary = ""
@@ -59,7 +48,7 @@ for k in range(len(seqs)):
     helix = find_stretches(binary, HELIX)
     strand = find_stretches(binary, STRAND)
 
-    print("Sequence", k + 1, ":", headers[k])
+    print("Sequence", k + 1, ":", records[k].description)
     print("Average hydrophobicity =", round(avg, 2))
     print("Helix residues :", to_ranges(helix))
     print("Strand residues:", to_ranges(strand))
