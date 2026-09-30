@@ -6,7 +6,7 @@ H = {'A': 13.85, 'D': 11.61, 'C': 15.37, 'E': 11.38, 'F': 13.93, 'G': 13.34, 'H'
 MIN_LEN = 10   # shortest stretch above the avg is counted as an TM segment
 
 seq = ""
-for line in open("q2.fasta"):
+for line in open("Q2.fasta"):
     if not line.startswith(">"):
         seq += line.strip()
 

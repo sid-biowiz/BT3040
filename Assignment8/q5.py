@@ -8,7 +8,7 @@ patterns = {
 
 headers = []
 seqs = []
-for line in open("q4.fasta"):
+for line in open("Q4.fasta"):
     line = line.strip()
     if line.startswith(">"):
         headers.append(line[1:])

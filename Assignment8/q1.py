@@ -45,7 +45,7 @@ def to_ranges(positions):
     return [str(a + 1) + "-" + str(b + 1) for a, b in ranges]   #1based indexing
 
 
-headers, seqs = read_fasta("q1.fasta")
+headers, seqs = read_fasta("Q1.fasta")
 fig, ax = plt.subplots(len(seqs), 1, figsize=(10, 3.5 * len(seqs)), squeeze=False)
 
 for k in range(len(seqs)):

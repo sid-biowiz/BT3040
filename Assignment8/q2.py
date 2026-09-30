@@ -7,7 +7,7 @@ STRAND = ["010101", "101010"]
 
 headers = []
 seqs = []
-for line in open("q1.fasta"):
+for line in open("Q1.fasta"):
     line = line.strip()
     if line.startswith(">"):
         headers.append(line[1:])
